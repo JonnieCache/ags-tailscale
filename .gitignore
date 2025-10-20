@@ -1,0 +1,8 @@
+@girs
+node_modules/
+*.log
+.DS_Store
+result
+result-*
+.direnv
+.envrc
