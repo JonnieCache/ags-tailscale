@@ -22,16 +22,17 @@ export default function Tailscale() {
   })
 
   const stateClass = createComputed([status], (status) => {
+    var classes = ["tailscale"];
     switch (status.state) {
       case TailscaleState.DISCONNECTED:
-        return ["tailscale-disconnected"]
+        classes.push("tailscale-disconnected")
       case TailscaleState.CONNECTED:
-        return ["tailscale-connected"]
+        classes.push("tailscale-connected")
       case TailscaleState.EXIT_NODE:
-        return ["tailscale-exit-node"]
-      default:
-        return []
+        classes.push("tailscale-exit-node")
     }
+
+    return classes;
   })
 
   const init = (btn: Gtk.MenuButton) => {
@@ -46,7 +47,7 @@ export default function Tailscale() {
 
   return (
     <menubutton $={(self) => init(self)} tooltipText={tooltip}>
-      <image iconName={iconName} class="tailscale" cssClasses={stateClass} />
+      <image iconName={iconName} cssClasses={stateClass} />
     </menubutton>
   )
 }
